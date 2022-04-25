@@ -4,12 +4,12 @@ server:
 
 
 spring:
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: create
-  datasource:
-    username: root
-    password: felipe@123
-    url: jdbc:mysql://localhost:3306/fornecedor
-    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: 'fornecedor'
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      
