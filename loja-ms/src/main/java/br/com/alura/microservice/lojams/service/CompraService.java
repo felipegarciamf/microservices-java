@@ -7,35 +7,25 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.discovery.converters.Auto;
+
+import br.com.alura.microservice.lojams.client.FornecedorClient;
 import br.com.alura.microservice.lojams.dto.CompraDto;
 import br.com.alura.microservice.lojams.dto.InfoFornecedorDto;
 
 @Service
 public class CompraService {
 
-	@Autowired
-	private RestTemplate client;
-	
-	@Autowired
-	private DiscoveryClient eurekaClient;
 
-	
+	@Autowired
+	private FornecedorClient fornecedor;
+
 	public void realizaCompra(CompraDto compra) {
 
-		ResponseEntity<InfoFornecedorDto> exchange = client.exchange(
-				"http://fornecedor/info/" + compra.getEndereco().getEstado(), HttpMethod.GET, null,
-				InfoFornecedorDto.class);
+		InfoFornecedorDto infoPorEstado = fornecedor.getInfoPorEstado(compra.getEndereco().getEstado());
 		
-		eurekaClient.getInstances("fornecedor").stream().forEach(fornecedor -> {
-			System.out.println("localhost:" + fornecedor.getPort());
-		});;
+		System.out.println(infoPorEstado.getEndereco());
 
-		try {
-			System.out.println(exchange.getBody().getEndereco());
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
 	}
 
 }
