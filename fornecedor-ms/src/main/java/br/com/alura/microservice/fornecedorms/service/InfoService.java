@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.alura.microservice.fornecedorms.model.InfoFornecedor;
+import br.com.alura.microservice.fornecedorms.repository.InfoRepository;
 
 @Service
 public class InfoService {

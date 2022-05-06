@@ -12,6 +12,8 @@ import com.netflix.discovery.converters.Auto;
 import br.com.alura.microservice.lojams.client.FornecedorClient;
 import br.com.alura.microservice.lojams.dto.CompraDto;
 import br.com.alura.microservice.lojams.dto.InfoFornecedorDto;
+import br.com.alura.microservice.lojams.dto.InfoPedidoDto;
+import br.com.alura.microservice.lojams.model.Compra;
 
 @Service
 public class CompraService {
@@ -20,11 +22,21 @@ public class CompraService {
 	@Autowired
 	private FornecedorClient fornecedor;
 
-	public void realizaCompra(CompraDto compra) {
+	public Compra realizaCompra(CompraDto compra) {
 
 		InfoFornecedorDto infoPorEstado = fornecedor.getInfoPorEstado(compra.getEndereco().getEstado());
 		
+		InfoPedidoDto pedido = fornecedor.realizaPedido(compra.getItens());
+		
 		System.out.println(infoPorEstado.getEndereco());
+		
+		Compra compraSalva = new Compra();
+		
+		compraSalva.setPedidoId(pedido.getId());
+		compraSalva.setEnderecoDestino(compra.getEndereco().toString());
+		compraSalva.setTempoDePreparo(pedido.getTempoDePreparo());
+		
+		return compraSalva;
 
 	}
 
