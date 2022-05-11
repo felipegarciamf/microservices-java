@@ -38,6 +38,13 @@
 			<artifactId>logback-syslog4j</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-sleuth -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth</artifactId>
+			<version>2.1.5.RELEASE</version>
+			<type>pom</type>
+		</dependency>
 
 
 		<dependency>
