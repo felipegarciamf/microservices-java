@@ -11,3 +11,4 @@ spring:
           uri: https://github.com/felipegarciamf/microservices-repo
           search-paths:
           - fornecedor
+          - loja

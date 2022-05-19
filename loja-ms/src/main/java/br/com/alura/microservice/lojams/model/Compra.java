@@ -1,13 +1,18 @@
 package br.com.alura.microservice.lojams.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Compra {
 
+	@Id
 	private Long pedidoId;
 
 	private int tempoDePreparo;
 
 	private String enderecoDestino;
-	
+
 	public String getEnderecoDestino() {
 		return enderecoDestino;
 	}
