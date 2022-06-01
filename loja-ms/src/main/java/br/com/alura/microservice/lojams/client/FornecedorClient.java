@@ -14,7 +14,7 @@ import br.com.alura.microservice.lojams.dto.ItemDaCompraDto;
 @FeignClient("fornecedor")
 public interface FornecedorClient {
 
-	@RequestMapping("/info/{estado}")
+	@RequestMapping(method = RequestMethod.GET, value="/info/{estado}")
 	InfoFornecedorDto getInfoPorEstado(@PathVariable String estado);
 
 	@RequestMapping(method = RequestMethod.POST, value="/pedido")
