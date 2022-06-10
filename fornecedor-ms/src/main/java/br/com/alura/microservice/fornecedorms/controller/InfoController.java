@@ -14,16 +14,15 @@ import br.com.alura.microservice.fornecedorms.service.InfoService;
 @RestController
 @RequestMapping("/info")
 public class InfoController {
-	
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(InfoController.class);
-	
+
 	@Autowired
 	private InfoService infoService;
-	
-	@RequestMapping(method = RequestMethod.GET, value="/{estado}")
+
+	@RequestMapping(method = RequestMethod.GET, value = "/{estado}")
 	public InfoFornecedor getInfoPorEstado(@PathVariable String estado) {
-		
+
 		LOG.info("Recebido pedido de informações do fornecedor de {}", estado);
 		return infoService.getInfoPorEstado(estado);
 	}
